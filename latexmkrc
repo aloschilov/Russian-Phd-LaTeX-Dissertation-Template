@@ -1,5 +1,9 @@
+# -*- mode: perl; -*-
+
 $DRAFTON = $ENV{DRAFTON};
 $DRAFTON //= '';
+$SHOWMARKUP = $ENV{SHOWMARKUP};
+$SHOWMARKUP //= '';
 $FONTFAMILY = $ENV{FONTFAMILY};
 $FONTFAMILY //= '';
 $ALTFONT = $ENV{ALTFONT};
@@ -32,6 +36,10 @@ $texargs = '';
 if ($DRAFTON ne '') {
     $texargs = $texargs . '\newcounter{draft}' .
         '\setcounter{draft}' . '{' . $DRAFTON . '}';
+}
+if ($SHOWMARKUP ne '') {
+    $texargs = $texargs . '\newcounter{showmarkup}' .
+        '\setcounter{showmarkup}' . '{' . $SHOWMARKUP . '}';
 }
 if ($FONTFAMILY ne '') {
     $texargs = $texargs . '\newcounter{fontfamily}' .
@@ -94,6 +102,9 @@ $bibtex = 'bibtex8 -B -c utf8cyrillic.csf %B';
 
 # set to 1 to count CPU time
 $show_time = $TIMERON;
+
+# maximum number of passes
+$max_repeat = 6;
 
 # record access files
 $recorder = 1;
